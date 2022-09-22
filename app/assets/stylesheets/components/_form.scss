@@ -8,3 +8,20 @@
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.5);
 }
+
+#border-radius-input {
+  border-radius: 10px 0 0 10px;
+  background-color: #fff;
+  border-color: #000;
+}
+
+
+#border-radius-button-date {
+  border-radius: 0 10px 10px 0;
+  background-color: #fff;
+  color: black;
+  &:hover {
+    color: #fff;
+    background-color: #000;
+  }
+}

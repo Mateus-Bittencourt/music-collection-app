@@ -2,7 +2,14 @@
   <% if @albums.size.zero? %>
     <h3>There are no albums yet!</h3>
   <% else %>
-    <h1>Albums: </h1>
+    <%= form_tag albums_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find an album",
+            id: 'border-radius-input' %>
+      <%= submit_tag "Search", class:'btn btn-outline-dark border-pattern', id: 'border-radius-button-date' %>
+    <% end %>
     <div class="row mb-3">
       <% @albums.each do |album| %>
         <div class="col-sm-12 col-md-4 col-lg-3">

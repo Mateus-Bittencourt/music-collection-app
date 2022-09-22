@@ -2,7 +2,11 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: %i[edit update destroy]
 
   def index
-    @albums = policy_scope(Album)
+    if params[:query].present?
+      @albums = policy_scope(Album.global_search(params[:query]))
+    else
+      @albums = policy_scope(Album)
+    end
     # raise
   end
 
