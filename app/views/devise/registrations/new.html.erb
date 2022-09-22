@@ -1,30 +1,34 @@
 <div class="container">
-  <h2>Sign up</h2>
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
-    <%= f.error_notification %>
-    <div class="form-inputs">
-      <%= f.input :full_name,
+  <div class="card p-3 mt-5">
+    <h2>Sign up</h2>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :full_name,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "full_name" }%>
-      <%= f.input :username,
+        <%= f.input :username,
                 required: true,
                 input_html: { autocomplete: "full_name" }%>
-      <%= f.input :role,
+        <%= f.input :role,
                 collection: ["admin", "user"],
                 required: true,
                 selected: 'user'%>
-      <%= f.input :password,
+        <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation,
+        <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-    </div>
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
-    </div>
-  <% end %>
-  <%= render "devise/shared/links" %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up", class:'btn btn-outline-dark border-pattern' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="container my-2">
+    <%= render "devise/shared/links" %>
+  </div>
 </div>
