@@ -2,6 +2,7 @@
   border-radius: 10px;
   overflow: hidden;
   // height: 20rem;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .image-album {
@@ -28,4 +29,8 @@
       text-shadow: rgb(255, 255, 255) 0px 5px 15px;
     }
   }
+}
+
+.card-text{
+  margin: 0;
 }
