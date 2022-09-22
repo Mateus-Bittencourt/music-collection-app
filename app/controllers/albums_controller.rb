@@ -2,17 +2,19 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: %i[edit update destroy]
 
   def index
-    @albums = Album.all
+    @albums = policy_scope(Album)
     # raise
   end
 
   def new
     @album = Album.new
+    authorize @album
   end
 
   def create
     @album = Album.new(album_params)
     @album.user = current_user
+    authorize @album
     # raise
     if @album.save
       redirect_to albums_path
@@ -38,7 +40,6 @@ class AlbumsController < ApplicationController
   # end
 
   def destroy
-    @album = Album.find(params[:id])
     if @album.destroy
       flash[:success] = 'Object was successfully deleted.'
       redirect_to albums_url
@@ -52,6 +53,7 @@ class AlbumsController < ApplicationController
 
   def set_album
     @album = Album.find(params[:id])
+    authorize @album
   end
 
   def album_params
