@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <% if @albums.size.zero? %>
+    <h3>There are no albums yet!</h3>
+  <% else %>
+    <h1>Albums: </h1>
+    <div class="row mb-3">
+      <% @albums.each do |album| %>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="d-flex justify-content-center mt-2">
+          <h5 class="card-title"><%= album.album_name %></h5>
+          </div>
+          <div class="card">
+            <%= image_tag "drew-perales.jpg", class:"image-album" %>
+            <div class="card-body">
+
+              <div class="d-flex justify-content-between">
+                <div class="card-body-text">
+                  <p class="card-text"><%= album.artist %></p>
+                  <p class="card-text"><%= album.year %></p>
+                  <%# <%= link_to "Show", album_path(album), class: "btn btn-primary" %>
+                </div>
+                <div class="card-body-button mt-4">
+                <% if album.user == current_user  %>
+                  <%= link_to "Edit", edit_album_path(album), class: "btn btn-primary" %>
+                <% end %>
+                </div>
+              </div>
+              <% if current_user.role == 'admin' %>
+                <div class="content-trash">
+                  <%= link_to album_path(album), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "trash" do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to "New Album", new_album_path, class: "btn btn-primary" %>
+</div>

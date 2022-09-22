@@ -1,0 +1,31 @@
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  // height: 20rem;
+  .card-body {
+    height: 100%;
+  }
+}
+
+.image-album {
+  width: 100%;
+}
+
+.content-trash {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  a {
+    // color: white;
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    font-size: 1.5rem;
+    &:hover {
+      color: rgba(255, 0, 0, 0.685);
+    }
+  }
+}

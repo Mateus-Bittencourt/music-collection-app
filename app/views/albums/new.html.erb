@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>New Album</h1>
+  <%= simple_form_for(@album, data: { turbo: :false }) do |f| %>
+    <%= f.input :album_name %>
+    <%= f.input :artist, collection: ['Adriatique', 'WhoMadeWho', 'Solomun', 'Carl Cox', 'DUBFIRE'] %>
+    <%= f.input :year %>
+    <%= f.button :submit %>
+    <%= link_to 'Back', albums_path, class:'btn btn-outline-dark border-pattern' %>
+  <% end %>
+
+</div>
