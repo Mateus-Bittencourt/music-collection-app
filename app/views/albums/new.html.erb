@@ -4,8 +4,8 @@
     <%= f.input :album_name %>
     <%= f.input :artist, collection: ['Adriatique', 'WhoMadeWho', 'Solomun', 'Carl Cox', 'DUBFIRE'] %>
     <%= f.input :year %>
+    <%= f.input :photo, as: :file %>
     <%= f.button :submit %>
     <%= link_to 'Back', albums_path, class:'btn btn-outline-dark border-pattern' %>
   <% end %>
-
 </div>
