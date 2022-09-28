@@ -13,6 +13,7 @@ class AlbumsController < ApplicationController
   def new
     @album = Album.new
     authorize @album
+    @artists = fetch_artist_api
   end
 
   def create
@@ -62,5 +63,12 @@ class AlbumsController < ApplicationController
 
   def album_params
     params.require(:album).permit(:album_name, :artist, :year, :photo)
+  end
+
+  def fetch_artist_api
+    response = HTTParty.get('https://europe-west1-madesimplegroup-151616.cloudfunctions.net/artists-api-controller',
+                            headers: { Authorization: 'Basic ZGV2ZWxvcGVyOlpHVjJaV3h2Y0dWeQ==' })
+    body = JSON.parse(response.body)
+    body['json'].map { |artist| artist.first['name'] }
   end
 end

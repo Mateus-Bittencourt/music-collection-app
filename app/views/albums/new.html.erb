@@ -3,7 +3,7 @@
     <h1>New Album</h1>
     <%= simple_form_for(@album, data: { turbo: :false }) do |f| %>
       <%= f.input :album_name %>
-      <%= f.input :artist, collection: ['Adriatique', 'WhoMadeWho', 'Solomun', 'Carl Cox', 'DUBFIRE'] %>
+      <%= f.input :artist, collection: @artists %>
       <%= f.input :year %>
       <%= f.input :photo, as: :file %>
       <%= f.button :submit, class:'btn btn-outline-dark border-pattern' %>
