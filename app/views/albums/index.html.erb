@@ -16,7 +16,7 @@
           <div class="d-flex justify-content-center mt-3">
             <h5 class="card-title"><%= album.album_name[..16] %></h5>
           </div>
-          <div class="card">
+          <div class="card card-album">
             <% if album.photo.key.nil? %>
               <%= image_tag "drew-perales.jpg", class: 'image-album' %>
             <% else %>
@@ -49,4 +49,5 @@
     </div>
   <% end %>
   <%= link_to "New Album", new_album_path, class:'btn btn-outline-dark border-pattern' %>
+   <%= link_to 'Back to Artists', artists_path, class:'btn btn-outline-dark border-pattern' %>
 </div>

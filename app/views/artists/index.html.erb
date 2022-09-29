@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <% @artists.each do |artist| %>
+      <div class="col-sm-12 col-md-4 col-lg-3">
+        <%= link_to artist_albums_path(artist['id']) do %>
+          <div class="card mt-3 card-artist">
+            <div class="card-body">
+              <h4 class="card-title"><%= artist['name'] %></h4>
+              <p class="card-text"><%= artist['twitter'] %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

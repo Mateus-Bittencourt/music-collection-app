@@ -3,6 +3,16 @@
   border-radius: 10px;
   overflow: hidden;
   // height: 20rem;
+}
+
+.card-artist {
+  border: 2px solid black;
+  &:hover {
+  box-shadow: rgb(38, 57, 77) 0px 10px 30px -10px;
+  }
+}
+
+.card-album {
   box-shadow: rgb(38, 57, 77) 0px 10px 30px -10px;
   min-height: 274px;
 }

@@ -2,25 +2,26 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: %i[edit update destroy]
 
   def index
-    if params[:query].present?
+    if params[:artist_id].present?
+      @albums = search_by_artist
+    elsif params[:query].present?
+
       @albums = policy_scope(Album.global_search(params[:query]))
     else
       @albums = policy_scope(Album)
     end
-    # raise
   end
 
   def new
     @album = Album.new
     authorize @album
-    @artists = fetch_artist_api
+    @artists = fetch_artist_api.map { |artist| artist.first['name'] }
   end
 
   def create
     @album = Album.new(album_params)
     @album.user = current_user
     authorize @album
-    # raise
     if @album.save
       redirect_to albums_path
     else
@@ -38,11 +39,6 @@ class AlbumsController < ApplicationController
       render :edit
     end
   end
-
-  # def destroy
-  #   @album.destroy
-  #   redirect_to albums_path
-  # end
 
   def destroy
     if @album.destroy
@@ -67,6 +63,16 @@ class AlbumsController < ApplicationController
     response = HTTParty.get('https://europe-west1-madesimplegroup-151616.cloudfunctions.net/artists-api-controller',
                             headers: { Authorization: 'Basic ZGV2ZWxvcGVyOlpHVjJaV3h2Y0dWeQ==' })
     body = JSON.parse(response.body)
-    body['json'].map { |artist| artist.first['name'] }
+    body['json']
+  end
+
+  def search_by_artist
+    artists = fetch_artist_api
+    @artist = artists.select { |artist| artist.first['id'] == params[:artist_id].to_i }.first.first
+    if params[:query].present?
+      policy_scope(Album.global_search(params[:query])).where(artist: @artist['name'])
+    else
+      policy_scope(Album).where(artist: @artist['name'])
+    end
   end
 end

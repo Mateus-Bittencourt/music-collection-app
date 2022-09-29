@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "albums#index"
+  root to: "artists#index"
 
   resources :albums, except: :show
+  resources :artists, only: :index do
+    resources :albums, only: :index
+  end
 end

@@ -5,7 +5,7 @@
       <%= f.input :album_name %>
       <%= f.input :artist, collection: @artists %>
       <%= f.input :year %>
-      <%= f.input :photo, as: :file %>
+      <%= f.input :photo, as: :file, label:'album cover' %>
       <%= f.button :submit, class:'btn btn-outline-dark border-pattern' %>
       <%= link_to 'Back', albums_path, class:'btn btn-outline-dark border-pattern' %>
     <% end %>
