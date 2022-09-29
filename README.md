@@ -19,6 +19,7 @@ bundle install
 ```
 yarn install
 ```
+Create an account on cloudnary, then create a .env file and add your api key like : CLOUDINARY_URL=cloudinary://518548649866697:**********
 
 ## Database creation and initialization
 
